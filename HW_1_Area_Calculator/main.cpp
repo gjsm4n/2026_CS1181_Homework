@@ -66,6 +66,14 @@ do {
 
     cin>>choice;
 
+     // cin.fail() will happen when a user enters something other than a whole #. This clears the error and allows the reprompts the user to rechoose.
+    while (cin.fail()) {
+        cin.clear();
+        cin.ignore();
+        cout << "Invalid input. Please choose a number between 1 and 6.\n\n";
+        cin>>choice;
+    }
+
     switch (choice) {
         case 1: {
             int base;
