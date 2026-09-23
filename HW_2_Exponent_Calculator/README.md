@@ -3,3 +3,6 @@
 - When the exponent = 0.
 - When the exponent > 0. 
 - When the exponent < 0.
+
+## Updates Made
+- 09/22/2026: Added section to return undefined when user raises 0 to negative exponent.
