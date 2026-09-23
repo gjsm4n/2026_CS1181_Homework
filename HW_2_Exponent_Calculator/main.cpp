@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <iostream>
 using namespace std;
 
@@ -15,11 +16,12 @@ bool keepRunning = true; // bool used to exit program.
 float answer = 1; // uses float to allow for decimal answers.
 
 void continuePrompt() {
+    // function used to loop back to original code based on user choice.
     char yesOrNo;
     do {
         cout << "Do you want to make another computation?(y/n)\n";
         cin >> yesOrNo;
-    }while (yesOrNo != 'Y' && yesOrNo !='y' && yesOrNo != 'N' && yesOrNo != 'n');
+    } while (yesOrNo != 'Y' && yesOrNo != 'y' && yesOrNo != 'N' && yesOrNo != 'n');
     switch (yesOrNo) {
         case 'y': {
             cout << "You chose 'Yes'.\n";
@@ -53,7 +55,6 @@ void continuePrompt() {
 // Has cin.fail() in case user makes mistake that would cause runtime error.
 
 int main() {
-
     do {
         float base;
         int exponent;
@@ -64,7 +65,7 @@ int main() {
             cin.clear();
             cin.ignore();
             cout << "Invalid input. Please input a number.\n\n";
-            cin>>base;
+            cin >> base;
         }
 
         cout << "Enter Exponent:\n";
@@ -74,23 +75,31 @@ int main() {
             cin.clear();
             cin.ignore();
             cout << "Invalid input. Please input a whole  number.\n\n";
-            cin>>exponent;
+
+            cin >> exponent;
         }
 
-        if (exponent == 0) {
-            answer = 1;
-
-        } else if (exponent > 0) {
-            for (int i=0; i<exponent; i++) {
-answer = answer*base;
-            }
+        if (base == 0 && exponent < 0) {
+            // Returns undefined if 0^(negative exponent).
+            cout << base << "^" << exponent << "=undefined" << "\n";
+            continuePrompt();
         } else {
-for (int i=0; i>exponent; i--) {
-    answer= answer/base;
-}
+            if (exponent == 0) {
+                // x^0 == 1
+                answer = 1;
+            } else if (exponent > 0) {
+                // Exponential growth
+                for (int i = 0; i < exponent; i++) {
+                    answer = answer * base;
+                }
+            } else {
+                for (int i = 0; i > exponent; i--) {
+                    // Exponential decay
+                    answer = answer / base;
+                }
+            }
+            cout << base << "^" << exponent << "=" << answer << "\n";
+            continuePrompt();
         }
-        cout << base << "^" << exponent << "=" << answer << "\n";
-        continuePrompt();
-    }while (keepRunning);
-
+    } while (keepRunning);
 }
