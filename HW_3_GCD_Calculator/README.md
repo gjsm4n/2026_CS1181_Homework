@@ -1,4 +1,4 @@
-#Title: GCD Calculator
+# Title: GCD Calculator
 ## Description:
 Program starts by asking the user for two numbers.
 Once the numbers are entered, the code will find the GCD by using the Euclidean algorithm.
