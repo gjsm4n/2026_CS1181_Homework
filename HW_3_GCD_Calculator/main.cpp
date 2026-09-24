@@ -83,12 +83,15 @@ int main() {
             cin >> num1 >> num2;
         }
 
+// Resolves issues if user inputs negative numbers.
+        
         while (num1 < 0 || num2 < 0) {
             cout << "Invalid input(s). Please positive whole numbers only.\n\n";
             cin >> num1 >> num2;
         }
 
-
+// swaps numbers if num1 is smaller than num2. Euclidean algorithm must have num1 >= num2 to work properly.
+        
         if (num1 < num2) {
             swap(num1, num2);
         }
